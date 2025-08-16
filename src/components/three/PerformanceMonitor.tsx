@@ -9,6 +9,14 @@ interface PerformanceStats {
   drawCalls: number;
 }
 
+interface PerformanceMemory {
+  usedJSHeapSize: number;
+}
+
+interface ExtendedPerformance extends Performance {
+  memory?: PerformanceMemory;
+}
+
 export const PerformanceMonitor = ({ showStats = false }: { showStats?: boolean }) => {
   const { gl } = useThree();
   const [stats, setStats] = useState<PerformanceStats>({ fps: 0, memory: 0, drawCalls: 0 });
@@ -25,8 +33,8 @@ export const PerformanceMonitor = ({ showStats = false }: { showStats?: boolean 
       
       setStats({
         fps,
-        memory: (performance as any).memory?.usedJSHeapSize 
-          ? Math.round((performance as any).memory.usedJSHeapSize / 1048576) 
+        memory: (performance as ExtendedPerformance).memory?.usedJSHeapSize 
+          ? Math.round((performance as ExtendedPerformance).memory.usedJSHeapSize / 1048576) 
           : 0,
         drawCalls: gl.info.render.calls
       });

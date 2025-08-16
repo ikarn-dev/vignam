@@ -93,7 +93,7 @@ export const initSmoothScroll = () => {
   if (typeof window === 'undefined') return;
 
   // Handle browser back/forward buttons
-  window.addEventListener('popstate', (e) => {
+  window.addEventListener('popstate', () => {
     const hash = window.location.hash;
     if (hash) {
       setTimeout(() => {

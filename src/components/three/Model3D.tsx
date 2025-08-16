@@ -1,7 +1,7 @@
 'use client';
 
 import { useGLTF, useAnimations, useEnvironment } from '@react-three/drei';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect } from 'react';
 import { useThree } from '@react-three/fiber';
 import { Group, Mesh, MeshStandardMaterial, Object3D } from 'three';
 
@@ -19,7 +19,7 @@ export const Model3D = ({
   roughness = 0.1
 }: Model3DProps) => {
   const group = useRef<Group>(null);
-  const { viewport, size } = useThree();
+  const { size } = useThree();
   // Load the environment map for metallic reflections
   const envMap = useEnvironment({ files: '/textures/forest.exr' });
   

@@ -155,7 +155,7 @@ export const FAQSection = () => {
 
         {/* FAQ Items */}
         <div ref={faqItemsRef} className="space-y-4">
-          {faqs.map((faq, index) => (
+          {faqs.map((faq) => (
             <div
               key={faq.id}
               className="bg-gray-50 rounded-2xl overflow-hidden faq-item"

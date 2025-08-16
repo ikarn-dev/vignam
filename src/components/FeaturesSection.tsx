@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -134,7 +133,7 @@ export const FeaturesSection = () => {
 
         {/* Single Row Layout - Minimal Gaps */}
         <div ref={featuresGridRef} className="grid grid-cols-1 lg:grid-cols-4 gap-2">
-          {features.map((feature, index) => (
+          {features.map((feature) => (
             <div
               key={feature.id}
               className="group feature-card"
