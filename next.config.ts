@@ -70,6 +70,15 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      {
+        source: '/about-images/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
     ];
   },
 
@@ -105,6 +114,12 @@ const nextConfig: NextConfig = {
     // Handle EXR files
     config.module.rules.push({
       test: /\.exr$/,
+      type: 'asset/resource',
+    });
+
+    // Handle JFIF image files
+    config.module.rules.push({
+      test: /\.jfif$/,
       type: 'asset/resource',
     });
 

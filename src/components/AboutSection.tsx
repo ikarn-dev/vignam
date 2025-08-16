@@ -273,10 +273,27 @@ export const AboutSection = () => {
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     priority={feature.id === 'simulations'}
+                    onError={(e) => {
+                      // Fallback to a default image if the current one fails
+                      const target = e.target as HTMLImageElement;
+                      target.src = '/about-images/fallback-image.jpg'; // Replace with your fallback image path
+                    }}
+                    onLoad={() => {
+                      // Image loaded successfully
+                      console.log(`Image loaded: ${feature.title}`);
+                    }}
                   />
                   <div className="absolute inset-0 bg-black/10" />
                 </div>
               ))}
+              
+              {/* Fallback content if no images load */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center">
+                <div className="text-center text-gray-600">
+                  <div className="text-lg font-medium mb-2">Interactive 3D Content</div>
+                  <p className="text-sm">Experience immersive learning</p>
+                </div>
+              </div>
             </div>
           </div>
 
