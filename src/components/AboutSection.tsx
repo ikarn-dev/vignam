@@ -49,6 +49,9 @@ export const AboutSection = () => {
   const testimonialRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Debug: Log all image paths
+    console.log('About section images:', features.map(f => ({ id: f.id, path: f.image })));
+    
     const timer = setTimeout(() => {
       if (!headingRef.current || !containerRef.current) return;
 
@@ -266,34 +269,24 @@ export const AboutSection = () => {
                   className={`absolute inset-0 transition-opacity duration-300 ease-out ${activeFeature === feature.id ? 'opacity-100' : 'opacity-0'
                     }`}
                 >
-                  <Image
+                  <img
                     src={feature.image}
                     alt={feature.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    priority={feature.id === 'simulations'}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
                     onError={(e) => {
-                      // Fallback to a default image if the current one fails
+                      // Log error for debugging
                       const target = e.target as HTMLImageElement;
-                      target.src = '/about-images/fallback-image.jpg'; // Replace with your fallback image path
+                      console.warn(`Image failed to load: ${target.src}`);
                     }}
                     onLoad={() => {
                       // Image loaded successfully
-                      console.log(`Image loaded: ${feature.title}`);
+                      console.log(`Image loaded successfully: ${feature.title}`);
                     }}
                   />
                   <div className="absolute inset-0 bg-black/10" />
                 </div>
               ))}
-              
-              {/* Fallback content if no images load */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center">
-                <div className="text-center text-gray-600">
-                  <div className="text-lg font-medium mb-2">Interactive 3D Content</div>
-                  <p className="text-sm">Experience immersive learning</p>
-                </div>
-              </div>
             </div>
           </div>
 
