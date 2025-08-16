@@ -112,28 +112,33 @@ export const AboutSection = () => {
         });
       }
 
-      // Animate feature list items
-      const featureItems = featuresListRef.current?.querySelectorAll('.feature-item');
-      if (featureItems && featureItems.length > 0) {
-        gsap.set(featureItems, {
-          x: -50,
-          opacity: 0
-        });
+      // Animate feature list items - REMOVED ANIMATIONS
+      // const featureItems = featuresListRef.current?.querySelectorAll('.feature-item');
+      // if (featureItems && featureItems.length > 0) {
+      //   gsap.set(featureItems, {
+      //     y: 100,
+      //     skewY: 7,
+      //     transformOrigin: 'bottom center',
+      //     force3D: true
+      //   });
 
-        gsap.to(featureItems, {
-          scrollTrigger: {
-            trigger: featuresListRef.current,
-            start: 'top 85%',
-            toggleActions: 'play none none reverse',
-            fastScrollEnd: true
-          },
-          duration: 0.8,
-          x: 0,
-          opacity: 1,
-          ease: "power3.out",
-          stagger: 0.1
-        });
-      }
+      //   gsap.to(featureItems, {
+      //     scrollTrigger: {
+      //       trigger: featuresListRef.current,
+      //       start: 'top 85%',
+      //       toggleActions: 'play none none reverse',
+      //       fastScrollEnd: true
+      //   },
+      //     duration: 1.8,
+      //     y: 0,
+      //     skewY: 0,
+      //     ease: "power4.out",
+      //     force3D: true,
+      //     stagger: {
+      //       amount: 0.3
+      //   }
+      //   });
+      // }
 
       // Animate feature image
       if (featureImageRef.current) {
@@ -233,17 +238,18 @@ export const AboutSection = () => {
               {features.map((feature, index) => (
                 <div
                   key={feature.id}
-                  className={`flex items-center space-x-4 cursor-pointer transition-all duration-300 p-4 rounded-lg feature-item ${activeFeature === feature.id
-                    ? 'bg-white shadow-md'
-                    : 'hover:bg-white/50'
-                    }`}
+                  className={`flex items-center space-x-4 cursor-pointer transition-all duration-300 p-4 rounded-xl feature-item ${
+                    activeFeature === feature.id
+                      ? 'bg-white shadow-lg border-l-4 border-blue-500 active'
+                      : 'hover:bg-white/60'
+                  }`}
                   onMouseEnter={() => setActiveFeature(feature.id)}
                 >
                   <div className="flex items-center space-x-4 flex-1">
-                    <span className="text-gray-400 text-sm font-mono">
+                    <span className="text-gray-400 text-sm font-mono feature-number transition-all duration-300">
                       {String(index + 1).padStart(2, '0')}.
                     </span>
-                    <span className="text-lg font-medium text-gray-900">
+                    <span className="text-lg font-medium text-gray-900 feature-title transition-all duration-300">
                       {feature.title}
                     </span>
                   </div>

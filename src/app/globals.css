@@ -316,3 +316,19 @@ img {
     color: black !important;
   }
 }
+
+/* Feature Items - Simple Styles */
+.feature-item {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: background-color 0.2s ease;
+}
+
+.feature-item:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.feature-item.active {
+  background: #ffffff;
+  border-left: 4px solid #3b82f6;
+}
