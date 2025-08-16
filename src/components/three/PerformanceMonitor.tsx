@@ -34,7 +34,7 @@ export const PerformanceMonitor = ({ showStats = false }: { showStats?: boolean 
       setStats({
         fps,
         memory: (performance as ExtendedPerformance).memory?.usedJSHeapSize 
-          ? Math.round((performance as ExtendedPerformance).memory.usedJSHeapSize / 1048576) 
+          ? Math.round((performance as ExtendedPerformance).memory!.usedJSHeapSize / 1048576) 
           : 0,
         drawCalls: gl.info.render.calls
       });
